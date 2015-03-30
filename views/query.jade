@@ -14,3 +14,11 @@ div
         input(id='prefix',type='text',value='',placeholder='@',name='prefix')
         input(type='submit',value='Do it',data-transition='fade', data-theme='c')
 
+div
+  form(action='/contains',method='get')
+    div(data-role='fieldcontain')
+    fieldset(data-role='controlgroup')
+        label(for='prefix') Words that contain: 
+        input(id='contain',type='text',value='',placeholder='@',name='prefix')
+        input(type='submit',value='Do it',data-transition='fade', data-theme='c')
+

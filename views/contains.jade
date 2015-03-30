@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  p
+    a(href="/") Word Wander home
+    &nbsp;-&nbsp;
+    a(href="/history") History of previous queries 
+
+  include query.jade
+  h1= title
+  b #{rows.length}  
+  b #{root}
+  p You can click on the first part of each word to see other words which start with that 'prefix.' For example,·
+    | clicking on 'auf' in 
+    a(href="/starts?prefix=auf") auf
+    |stehen &nbsp;&nbsp; starts with naked 'auf' and then aufaddiere, aufaddieren, aufaddierend, and 14,320 other entertaining German words which start with 'auf.'
+  hr
+  ol
+    each root, i in rows
+      li
+        p
+          a(href="/starts?prefix=#{root.prefix}")  #{root.prefix} 
+          | (#{root.word})&nbsp;&nbsp;
+          a(href="https://translate.google.com/#de/en/#{root.word}", target="_new") (translate.google.com)
+          &nbsp;-&nbsp;
+          a(href="http://dict.leo.org/#/search=#{root.word}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on", target="_new") (dict.leo.org)
+      
+  
+
+  include query.jade
