@@ -12,8 +12,11 @@ block content
       li=prefixes.root 
         p #{root}
           a(href="/prefixes?root=#{w.prefix}") #{w.prefix}
-          | &nbsp; - #{w.word} 
+          | &nbsp; 
           a(href="https://translate.google.com/#de/en/#{w.word}", target="_new") (Google Translate)
+
+          &nbsp;-&nbsp;
+          a(href="http://dict.leo.org/#/search=#{w.word}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on", target="_new") (dict.leo.org)
       
   
 
