@@ -11,7 +11,11 @@ block content
     each root, i in prefixes
       li=prefixes.root 
         p
-          a(href="/starts?prefix=#{root.prefix}") #{root.prefix} (#{root.word})
+          a(href="/starts?prefix=#{root.prefix}")  #{root.prefix} 
+          | (#{root.word})&nbsp;&nbsp;
+          a(href="https://translate.google.com/#de/en/#{root.word}", target="_new") (translate.google.com)
+          &nbsp;-&nbsp;
+          a(href="http://dict.leo.org/#/search=#{root.word}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on", target="_new") (dict.leo.org)
       
   
 

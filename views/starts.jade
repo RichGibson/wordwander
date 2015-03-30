@@ -12,6 +12,8 @@ block content
       li=prefixes.root 
         p #{root}
           a(href="/prefixes?root=#{w.prefix}") #{w.prefix}
+          | &nbsp; - #{w.word} 
+          a(href="https://translate.google.com/#de/en/#{w.word}", target="_new") (Google Translate)
       
   
 
