@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p German Word Explorer
+  p German Word Wander created by Rich Gibson rich.gibson@gmail.com
   p This uses the 'Free German Dictionay' of 1.6 million German words created by Jan Schreiber and available 
     a(href="http://sourceforge.net/projects/germandict/") here on sourceforge
 
@@ -15,6 +15,11 @@ block content
           label(for='root') root
             input(id='root',type='text',value='',placeholder='@',name='root')
           input(type='submit',value='Do it',data-transition='fade', data-theme='c')
+  p For example 
+    li
+      a(href="/prefixes?root=stehen") All words which end with 'stehen'
+    li
+      a(href="/prefixes?root=ziehen") All words which end with 'ziehen'
     
   p look up words which start a certain way - enter 'ab' and get all words which start 'ab'
   div
@@ -25,7 +30,11 @@ block content
             input(id='prefix',type='text',value='',placeholder='@',name='prefix')
           input(type='submit',value='Do it',data-transition='fade', data-theme='c')
 
-  p Tasks
-  p 
+  p For example 
+    li
+      a(href="/starts?prefix=auf") All words which start with 'auf'
+    li
+      a(href="/starts?prefix=aus") All words which start with 'aus'
 
+  hr
   p To start: in german/wordexplorer $ node/bin/www
