@@ -3,6 +3,7 @@ extends layout
 block content
   p
     a(href="/") Word Wander home
+  include query.jade
   h1= title
   b #{prefixes.length}  prefixes/composites for 
   b #{root}
@@ -23,3 +24,4 @@ block content
       
   
 
+  include query.jade

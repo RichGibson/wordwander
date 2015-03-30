@@ -1,0 +1,16 @@
+div
+  form(action='/prefixes',method='get')
+    div(data-role='fieldcontain')
+    fieldset(data-role='controlgroup')
+        label(for='root') Words which end with: 
+        input(id='root',type='text',value='',placeholder='@',name='root')
+        input(type='submit',value='Do it',data-transition='fade', data-theme='c')
+
+div
+  form(action='/starts',method='get')
+    div(data-role='fieldcontain')
+    fieldset(data-role='controlgroup')
+        label(for='prefix') Words that start with: 
+        input(id='prefix',type='text',value='',placeholder='@',name='prefix')
+        input(type='submit',value='Do it',data-transition='fade', data-theme='c')
+
