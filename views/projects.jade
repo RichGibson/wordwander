@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  a(href="/projects.json") JSON list of projects
+  hr
+  each project, i in projects
+    li=project.project_name 
+      a(href="/project/#{project.metadata.project_file}") #{project.metadata.project_file}: #{project.metadata.project_name}    
+      //p #{project.metadata.project_name}
+
+      //ul 
+      //  each fld, i in project.metadata
+      //    li=i+': '+fld
+      
+  
+

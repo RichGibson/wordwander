@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  p
+    a(href="/") Word Explorer home
+  h1= title
+  b #{prefixes.length}  prefixes/composites for 
+  b #{root}
+  hr
+  ol
+    each root, i in prefixes
+      li=prefixes.root 
+        p #{root.prefix} (#{root.word})
+      
+  
+

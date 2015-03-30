@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  a(href="/projects") All projects
+  hr
+  h2="Metadata"
+  <ul>
+  each fld, i in project.metadata
+    li=i+': '+fld
+  </ul>
+
+  h2="Stacks"
+  p='Images per stack: '+project.metadata['project_stacks']
+
+  //each row, i in project.stacks
+  //    h1 row: #{row}
+  //    each col, j in row
+  //      p col: #{col}
+  //      p positions: #{col.positions}
+  //      p positions[0]: #{col.positions[0]}
+
+  // examples 
+  // td: "foobar"
+  // td: #{variable}
+
+  hr
+  table(width="100%", border='1')
+    each row, i in project.stacks
+      tr
+        each col, j in row
+          td  
+            | #{col.stackdir} 
+            br
+            | #{col.status}
+            //img(src='#{project.queue.url}/#{project.metadata.capture_directory}/#{col.positions[0]}',height="67", width="100")
+
