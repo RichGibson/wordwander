@@ -6,7 +6,12 @@ block content
   h1= title
   b #{prefixes.length}  words which start with 
   b #{root}
+  p You can click on the second part of each word to see other words which end with that 'stem.' For example, 
+    | clicking on 'stehen' in auf
+    a(href="/prefixes?root=stehen") stehen
+    |&nbsp;&nbsp; shows you abseitsstehen, abstehen, abzustehen, anstehen, and 125 other fine German words.
   hr
+
   ol
     each w, i in prefixes
       li=prefixes.root 

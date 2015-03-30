@@ -6,6 +6,10 @@ block content
   h1= title
   b #{prefixes.length}  prefixes/composites for 
   b #{root}
+  p You can click on the first part of each word to see other words which start with that 'prefix.' For example,·
+    | clicking on 'auf' in 
+    a(href="/starts?prefix=auf") auf
+    |stehen &nbsp;&nbsp; starts with naked 'auf' and then aufaddiere, aufaddieren, aufaddierend, and 14,320 other entertaining German words which start with 'auf.'
   hr
   ol
     each root, i in prefixes

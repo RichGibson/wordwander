@@ -7,7 +7,7 @@ var db = new sqlite3.Database('german.sqlite');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Word Explorer' });
+  res.render('index', { title: 'Word Wander' });
 });
 
 /* GET prefixes*/
