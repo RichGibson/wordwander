@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  p
+    a(href="/") Word Wander home
+  h1= title
+  b #{prefixes.length}  words which start with 
+  b #{root}
+  hr
+  ol
+    each w, i in prefixes
+      li=prefixes.root 
+        p #{root}
+          a(href="/prefixes?root=#{w.prefix}") #{w.prefix}
+      
+  
+

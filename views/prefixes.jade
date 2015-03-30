@@ -2,7 +2,7 @@ extends layout
 
 block content
   p
-    a(href="/") Word Explorer home
+    a(href="/") Word Wander home
   h1= title
   b #{prefixes.length}  prefixes/composites for 
   b #{root}
@@ -10,7 +10,8 @@ block content
   ol
     each root, i in prefixes
       li=prefixes.root 
-        p #{root.prefix} (#{root.word})
+        p
+          a(href="/starts?prefix=#{root.prefix}") #{root.prefix} (#{root.word})
       
   
 
