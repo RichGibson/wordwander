@@ -68,7 +68,7 @@ router.get('/starts', function(req, res, next) {
 
 router.get('/history', function(req, res, next) {
   console.log('this is history');
-  query = "select distinct(wordvalue), query from history order by query";
+  query = "select distinct(wordvalue), query from history order by wordvalue, query";
 
   history = db.all(query, function(err,rows){
         res.render('history', { title: 'Query History', history: rows });

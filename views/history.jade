@@ -13,7 +13,8 @@ block content
   ol
     each h, i in history
       li
-        a(href="/#{h.query}?prefix=#{h.wordvalue}") #{h.wordvalue}
+        a(href="/#{h.query}?prefix=#{h.wordvalue}") #{h.wordvalue} 
+        | (/#{h.query})
   
 
   include query.jade
