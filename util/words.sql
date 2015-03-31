@@ -1,0 +1,5 @@
+BEGIN TRANSACTION;
+CREATE TABLE 'words' (
+'word' TEXT
+);
+COMMIT;

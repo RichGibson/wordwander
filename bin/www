@@ -26,7 +26,8 @@ var server = http.createServer(app);
  */
 console.log('port '+port);
 console.log('if this fails try sudo iptables -I INPUT 1 -i eth0 -p tcp --dport 8080 -j ACCEPT ');
-server.listen(port, 'pistonbot.com');
+server.listen(port);
+//server.listen(port, 'pistonbot.com');
 server.on('error', onError);
 server.on('listening', onListening);
 

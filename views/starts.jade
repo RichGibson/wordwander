@@ -1,10 +1,7 @@
 extends layout
 
 block content
-  p
-    a(href="/") Word Wander home
-    &nbsp;-&nbsp;
-    a(href="/history") History of previous queries·
+  include head.jade
   include query.jade
   h1= title
   b #{prefixes.length}  words which start with 
@@ -17,8 +14,12 @@ block content
 
   ol
     each w, i in prefixes
-      li=prefixes.root 
-        p #{root}
+      li
+        p 
+          if w.top10k
+            |(top10k word!) #{root}
+          else
+            |#{root}
           a(href="/prefixes?root=#{w.prefix}") #{w.prefix}
           | &nbsp; 
           a(href="https://translate.google.com/#de/en/#{w.word}", target="_new") (Google Translate)

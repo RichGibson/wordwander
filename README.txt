@@ -1,5 +1,12 @@
 german wordexplorer notes
 
+Add top10000 feature.
+-modify schema - python 
+alter table words add top integer;
+create index 'fk_words' on 'words' ('word');
+create index 'fk_top' on 'words' ('top');
+http://wortschatz.uni-leipzig.de/Papers/top10000de.txt
+top10000de.txt
 
 I started with the german dictionay. 
 

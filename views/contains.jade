@@ -19,6 +19,8 @@ block content
     each root, i in rows
       li
         p
+          if root.top10k
+            |(top10k word!)
           a(href="/starts?prefix=#{root.prefix}")  #{root.prefix} 
           | (#{root.word})&nbsp;&nbsp;
           a(href="https://translate.google.com/#de/en/#{root.word}", target="_new") (translate.google.com)

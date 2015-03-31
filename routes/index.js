@@ -20,11 +20,11 @@ router.get('/prefixes', function(req, res, next) {
   //root = req.params.root;
   console.log("in index.js prefixes root:" + root);
   // prefixes = wordwander.get_roots(root);
-  query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix from words where word glob '*" + root + "'";
+  query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "'";
 
   prefixes = "foo";
   prefixes = db.all(query, function(err,rows){
-        console.log("in db.all query") ;
+        console.log("/prefixes in db.all query") ;
         //console.log(rows); 
         res.render('prefixes', { title: 'Prefixes', root: root, prefixes: rows });
         //res.json({ "rows" : rows });
@@ -37,7 +37,7 @@ router.get('/contains', function(req, res, next) {
   prefixes = db.all(query, function(err,rows){ });
   console.log("in index.js contains root:" + root);
   // prefixes = wordwander.get_roots(root);
-  query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix from words where word glob '*" + root + "*'";
+  query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "*'";
 
   prefixes = "foo";
   prefixes = db.all(query, function(err,rows){
@@ -55,11 +55,11 @@ router.get('/starts', function(req, res, next) {
   prefixes = db.all(query, function(err,rows){ });
   console.log("in index.js /starts root:" + root);
   l = root.length + 1;
-  query = "select word, substr(word," + l + ") as prefix from words where word glob '" + root + "*'";
+  query = "select word, substr(word," + l + ") as prefix, top as top10k from words where word glob '" + root + "*'";
 
   prefixes = "foo";
   prefixes = db.all(query, function(err,rows){
-        console.log("in db.all query") ;
+        console.log("/starts in db.all query") ;
         //console.log(rows); 
         res.render('starts', { title: 'Words that start with...', root: root, prefixes: rows });
         //res.json({ "rows" : rows });

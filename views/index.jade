@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  include head.jade
   p German Word Wander created by Rich Gibson rich.gibson@gmail.com
   p This uses the 'Free German Dictionay' of 1.6 million German words created by Jan Schreiber and available 
     a(href="http://sourceforge.net/projects/germandict/") here on sourceforge
@@ -37,4 +38,11 @@ block content
       a(href="/starts?prefix=aus") All words which start with 'aus'
 
   hr
+  p 
+    a(href="http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#German") Wiktionary list of top German words
+
+
+  hr
   p To start: in german/wordwander $ node/bin/www
+
+  p add top 10,000 words.

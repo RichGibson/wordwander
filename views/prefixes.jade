@@ -1,11 +1,7 @@
 extends layout
 
 block content
-  p
-    a(href="/") Word Wander home
-    &nbsp;-&nbsp;
-    a(href="/history") History of previous queries 
-
+  include head.jade
   include query.jade
   h1= title
   b #{prefixes.length}  prefixes/composites for 
@@ -17,13 +13,17 @@ block content
   hr
   ol
     each root, i in prefixes
-      li=prefixes.root 
-        p
+      li
+        p 
+          if root.top10k
+            |(top10k word!) 
+          #{prefixes.root}
           a(href="/starts?prefix=#{root.prefix}")  #{root.prefix} 
           | (#{root.word})&nbsp;&nbsp;
           a(href="https://translate.google.com/#de/en/#{root.word}", target="_new") (translate.google.com)
           &nbsp;-&nbsp;
           a(href="http://dict.leo.org/#/search=#{root.word}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on", target="_new") (dict.leo.org)
+          | (top=#{root.top10k})
       
   
 
