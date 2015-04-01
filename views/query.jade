@@ -3,7 +3,9 @@ div
     div(data-role='fieldcontain')
     fieldset(data-role='controlgroup')
         label(for='root') Words which end with: 
-        input(id='root',type='text',value='',placeholder='@',name='root')
+        input(id='root',type='text',value='#{root}',placeholder='@',name='root')
+        label(for='top10k') Only include top 10k words?
+        input(id='top10k',type='checkbox',value='1',placeholder='@',name='top10k')
         input(type='submit',value='Do it',data-transition='fade', data-theme='c')
 
 div
@@ -12,6 +14,8 @@ div
     fieldset(data-role='controlgroup')
         label(for='prefix') Words that start with: 
         input(id='prefix',type='text',value='',placeholder='@',name='prefix')
+        label(for='top10k') Only include top 10k words?
+        input(id='top10k',type='checkbox',value='1',placeholder='@',name='top10k')
         input(type='submit',value='Do it',data-transition='fade', data-theme='c')
 
 div
@@ -20,5 +24,7 @@ div
     fieldset(data-role='controlgroup')
         label(for='prefix') Words that contain: 
         input(id='contain',type='text',value='',placeholder='@',name='prefix')
+        label(for='top10k') Only include top 10k words?
+        input(id='top10k',type='checkbox',value='1',placeholder='@',name='top10k')
         input(type='submit',value='Do it',data-transition='fade', data-theme='c')
 

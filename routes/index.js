@@ -15,12 +15,18 @@ router.get('/', function(req, res, next) {
 
 router.get('/prefixes', function(req, res, next) {
   root = req.query.root;
+  top10k = req.query.top10k;
   query = "insert into history values ('" + root + "', 'prefixes')";
   prefixes = db.all(query, function(err,rows){ });
   //root = req.params.root;
-  console.log("in index.js prefixes root:" + root);
+  console.log("in index.js prefixes root:" + root+ " top10k|"+top10k+"|");
   // prefixes = wordwander.get_roots(root);
-  query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "'";
+  if (typeof myVar != 'undefined') {
+      query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "' and top10k>0";
+      console.log("in index.js top10k query");
+  } else {
+    query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "'";
+  }
 
   prefixes = "foo";
   prefixes = db.all(query, function(err,rows){
@@ -33,11 +39,16 @@ router.get('/prefixes', function(req, res, next) {
 
 router.get('/contains', function(req, res, next) {
   root = req.query.prefix;
+  top10k = req.query.top10k;
   query = "insert into history values ('" + root + "', 'contains')";
   prefixes = db.all(query, function(err,rows){ });
   console.log("in index.js contains root:" + root);
   // prefixes = wordwander.get_roots(root);
-  query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "*'";
+  if (top10k=1) {
+      query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "*' and top10k>0";
+  } else {
+      query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "*'";
+  }
 
   prefixes = "foo";
   prefixes = db.all(query, function(err,rows){
@@ -51,6 +62,7 @@ router.get('/contains', function(req, res, next) {
 router.get('/starts', function(req, res, next) {
   console.log('this is starts');
   root = req.query.prefix;
+  top10k = req.query.top10k;
   query = "insert into history values ('" + root + "', 'starts')";
   prefixes = db.all(query, function(err,rows){ });
   console.log("in index.js /starts root:" + root);
