@@ -14,7 +14,7 @@ router.get('/prefix_count', function(req, res, next) {
     rows = wordwander.prefix_count();
     console.log("rows?" + rows);
     query="temp";
-    res.render('prefix_count', { title: 'title tk', rows: rows, top10k: top10k, search_type: 'prefix_count', query: query });
+    res.render('prefix_count', { title: 'prefix count', rows: rows, top10k: top10k, search_type: 'prefix_count', query: query });
 });
 
 router.get('/search', function(req, res, next) {
@@ -29,7 +29,7 @@ router.get('/search', function(req, res, next) {
 
   rslt = db.all(query, function(err,rows){
         console.log("/search in db.all query") ;
-        res.render('results', { title: 'title tk', root: root, rows: rows, top10k: top10k, search_type: search_type, query: query });
+        res.render('results', { title: 'search', root: root, rows: rows, top10k: top10k, search_type: search_type, query: query });
         //res.json({ "rows" : rows });
     });
 });
