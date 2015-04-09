@@ -1,30 +1,13 @@
-div
-  form(action='/prefixes',method='get')
-    div(data-role='fieldcontain')
-    fieldset(data-role='controlgroup')
-        label(for='root') Words which end with: 
-        input(id='root',type='text',value='#{root}',placeholder='@',name='root')
-        label(for='top10k') Only include top 10k words?
-        input(id='top10k',type='checkbox',value='1',placeholder='@',name='top10k')
-        input(type='submit',value='Do it',data-transition='fade', data-theme='c')
-
-div
-  form(action='/starts',method='get')
-    div(data-role='fieldcontain')
-    fieldset(data-role='controlgroup')
-        label(for='prefix') Words that start with: 
-        input(id='prefix',type='text',value='',placeholder='@',name='prefix')
-        label(for='top10k') Only include top 10k words?
-        input(id='top10k',type='checkbox',value='1',placeholder='@',name='top10k')
-        input(type='submit',value='Do it',data-transition='fade', data-theme='c')
-
-div
-  form(action='/contains',method='get')
-    div(data-role='fieldcontain')
-    fieldset(data-role='controlgroup')
-        label(for='prefix') Words that contain: 
-        input(id='contain',type='text',value='',placeholder='@',name='prefix')
-        label(for='top10k') Only include top 10k words?
-        input(id='top10k',type='checkbox',value='1',placeholder='@',name='top10k')
-        input(type='submit',value='Do it',data-transition='fade', data-theme='c')
+- var search_label = "Words which end with:"
+- var search_type = "prefix"
+include query_one.jade
+- var search_label = "Words that start with"
+- var search_type = "suffix"
+include query_one.jade
+- var search_label = "Words that contain"
+- var search_type = "contains"
+include query_one.jade
+- var search_label = "Verb Prefix lookup-lookup 'official' prefixes"
+- var search_type = "verbprefix"
+include query_one.jade
 

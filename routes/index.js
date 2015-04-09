@@ -10,70 +10,26 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Word Wander' });
 });
 
-/* GET prefixes*/
-/* router.get('/prefixes/:root', function(req, res, next) { */
+router.get('/prefix_count', function(req, res, next) {
+    rows = wordwander.prefix_count();
+    console.log("rows?" + rows);
+    query="temp";
+    res.render('prefix_count', { title: 'title tk', rows: rows, top10k: top10k, search_type: 'prefix_count', query: query });
+});
 
-router.get('/prefixes', function(req, res, next) {
+router.get('/search', function(req, res, next) {
+  search_type = req.query.search_type
   root = req.query.root;
   top10k = req.query.top10k;
-  query = "insert into history values ('" + root + "', 'prefixes')";
-  prefixes = db.all(query, function(err,rows){ });
-  //root = req.params.root;
-  console.log("in index.js prefixes root:" + root+ " top10k|"+top10k+"|");
-  // prefixes = wordwander.get_roots(root);
-  if (typeof myVar != 'undefined') {
-      query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "' and top10k>0";
-      console.log("in index.js top10k query");
-  } else {
-    query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "'";
-  }
 
-  prefixes = "foo";
-  prefixes = db.all(query, function(err,rows){
-        console.log("/prefixes in db.all query") ;
-        //console.log(rows); 
-        res.render('prefixes', { title: 'Prefixes', root: root, prefixes: rows });
-        //res.json({ "rows" : rows });
-    });
-});
+  wordwander.save_history(root,search_type);
+  query = wordwander.make_query(root,search_type,top10k);
 
-router.get('/contains', function(req, res, next) {
-  root = req.query.prefix;
-  top10k = req.query.top10k;
-  query = "insert into history values ('" + root + "', 'contains')";
-  prefixes = db.all(query, function(err,rows){ });
-  console.log("in index.js contains root:" + root);
-  // prefixes = wordwander.get_roots(root);
-  if (top10k=1) {
-      query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "*' and top10k>0";
-  } else {
-      query = "select word, substr(word,0,instr(word,'" + root + "')) as prefix, top as top10k from words where word glob '*" + root + "*'";
-  }
+  console.log("query: " + query);
 
-  prefixes = "foo";
-  prefixes = db.all(query, function(err,rows){
-        console.log("in db.all query") ;
-        //console.log(rows); 
-        res.render('contains', { title: 'Contains', root: root, rows: rows });
-        //res.json({ "rows" : rows });
-    });
-});
-
-router.get('/starts', function(req, res, next) {
-  console.log('this is starts');
-  root = req.query.prefix;
-  top10k = req.query.top10k;
-  query = "insert into history values ('" + root + "', 'starts')";
-  prefixes = db.all(query, function(err,rows){ });
-  console.log("in index.js /starts root:" + root);
-  l = root.length + 1;
-  query = "select word, substr(word," + l + ") as prefix, top as top10k from words where word glob '" + root + "*'";
-
-  prefixes = "foo";
-  prefixes = db.all(query, function(err,rows){
-        console.log("/starts in db.all query") ;
-        //console.log(rows); 
-        res.render('starts', { title: 'Words that start with...', root: root, prefixes: rows });
+  rslt = db.all(query, function(err,rows){
+        console.log("/search in db.all query") ;
+        res.render('results', { title: 'title tk', root: root, rows: rows, top10k: top10k, search_type: search_type, query: query });
         //res.json({ "rows" : rows });
     });
 });
@@ -86,22 +42,6 @@ router.get('/history', function(req, res, next) {
         res.render('history', { title: 'Query History', history: rows });
         //res.json({ "rows" : rows });
     });
-});
-
-/* GET all projects json. */
-router.get('/projects.json', function(req, res, next) {
-  projects = wordwander.queue_update('');
-  res.send(projects);
-});
-
-/* GET all projects home page. */
-// I'd like to pass a queue_dir, but I don't know how :-/
-router.get('/projects(/:queue_dir)?', function(req, res, next) {
-  if (req.params.queue_dir) {
-    wordwander.queue.dir = req.params.queue_dir;
-  }
-  projects = wordwander.queue_update('')
-  res.render('projects', { title: 'Word Explorer', projects: projects });
 });
 
 module.exports = router;

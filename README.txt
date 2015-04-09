@@ -1,5 +1,17 @@
 german wordexplorer notes
 
+refactor:
+-verb prefix lookups
+
+remove the redundancy.
+
+fixed-error! 'stehen' contains: 
+stehens   (stehendschießen) -> the suffix query is failing.
+for everything, contains, starts, maybe prefix...damn
+
+-modify query for suffix/contain
+
+
 Add top10000 feature.
 -modify schema - python 
 alter table words add top integer;
